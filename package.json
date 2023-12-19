@@ -5,7 +5,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --fix --ext .js,.ts,.tsx ./src --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "lint:css": "stylelint '**/*.scss'"
   },
