@@ -1,1 +1,1 @@
-type BaseTheme = "dark" | "light";
+type BaseTheme = 'dark' | 'light';

@@ -1,40 +1,40 @@
-import { useState } from "react";
-import { Layout, Menu } from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from 'react'
+import { Layout, Menu } from 'antd'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-import { useAppDispatch } from "@/hooks";
-import { setMenu } from "@/store/slice/menu";
-import { siderMenus } from "@/constant/menus";
+import { useAppDispatch } from '@/hooks'
+import { setMenu } from '@/store/slice/menu'
+import { siderMenus } from '@/constant/menus'
 
 const Sider: React.FC<{ theme: BaseTheme }> = ({ theme }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false)
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const menuClick = ({ key, keyPath }) => {
-    navigate(`/${key}`);
+    navigate(`/${key}`)
 
-    const breadcrumbs: Array<{ title: string; key: string }> = [];
+    const breadcrumbs: Array<{ title: string; key: string }> = []
 
     const setBreadcrumbs = (menus) => {
-      const menuPath = keyPath.pop();
+      const menuPath = keyPath.pop()
       menus.forEach(({ key, label, children }) => {
-        if (key !== menuPath) return;
-        breadcrumbs.push({ title: label, key });
-        keyPath.length && setBreadcrumbs(children);
-      });
-    };
+        if (key !== menuPath) return
+        breadcrumbs.push({ title: label, key })
+        keyPath.length && setBreadcrumbs(children)
+      })
+    }
 
-    setBreadcrumbs(siderMenus);
+    setBreadcrumbs(siderMenus)
 
-    dispatch(setMenu({ breadcrumbs }));
-  };
+    dispatch(setMenu({ breadcrumbs }))
+  }
 
-  const currentKey = useLocation().pathname.slice(1);
-  const defaultOpenKeys = [currentKey.split("/")[0]];
-  const defaultSelectedKeys = [currentKey];
+  const currentKey = useLocation().pathname.slice(1)
+  const defaultOpenKeys = [currentKey.split('/')[0]]
+  const defaultSelectedKeys = [currentKey]
 
   return (
     <Layout.Sider
@@ -46,7 +46,7 @@ const Sider: React.FC<{ theme: BaseTheme }> = ({ theme }) => {
     >
       <Menu
         onClick={menuClick}
-        style={{ height: "100%" }}
+        style={{ height: '100%' }}
         theme={theme}
         mode="inline"
         items={siderMenus}
@@ -54,7 +54,7 @@ const Sider: React.FC<{ theme: BaseTheme }> = ({ theme }) => {
         defaultSelectedKeys={defaultSelectedKeys}
       />
     </Layout.Sider>
-  );
-};
+  )
+}
 
-export default Sider;
+export default Sider

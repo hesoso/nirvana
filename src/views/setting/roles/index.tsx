@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Space, Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
-import { getRoles } from "@/api/system";
+import { useEffect, useState } from 'react'
+import { Space, Table } from 'antd'
+import type { ColumnsType } from 'antd/es/table'
+import { getRoles } from '@/api/system'
 
 interface RoleDataType {
   key: string;
@@ -13,28 +13,28 @@ interface RoleDataType {
 
 const columns: ColumnsType<RoleDataType> = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
   },
   {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
   },
   {
-    title: "Auth",
-    dataIndex: "auth",
-    key: "auth",
+    title: 'Auth',
+    dataIndex: 'auth',
+    key: 'auth',
   },
   {
-    title: "Desc",
-    dataIndex: "desc",
-    key: "desc",
+    title: 'Desc',
+    dataIndex: 'desc',
+    key: 'desc',
   },
   {
-    title: "Action",
-    key: "action",
+    title: 'Action',
+    key: 'action',
     render: () => (
       <Space size="middle">
         <a>Edit</a>
@@ -42,20 +42,20 @@ const columns: ColumnsType<RoleDataType> = [
       </Space>
     ),
   },
-];
+]
 
 const Roles = () => {
-  const [roles, setRoles] = useState<RoleDataType[]>([]);
+  const [roles, setRoles] = useState<RoleDataType[]>([])
 
   const getRoleList = async () => {
-    const res = await getRoles<RoleDataType[]>();
-    if (res.code !== 0) return;
-    setRoles(res.data);
-  };
+    const res = await getRoles<RoleDataType[]>()
+    if (res.code !== 0) return
+    setRoles(res.data)
+  }
 
   useEffect(() => {
-    getRoleList();
-  }, []);
+    getRoleList()
+  }, [])
 
   return (
     <Table
@@ -64,7 +64,7 @@ const Roles = () => {
       pagination={false}
       size="middle"
     />
-  );
-};
+  )
+}
 
-export default Roles;
+export default Roles

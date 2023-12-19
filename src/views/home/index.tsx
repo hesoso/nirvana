@@ -3,7 +3,7 @@ const Home = () => {
     <>
       <div>home</div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

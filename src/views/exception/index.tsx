@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Exception = () => {
-  return <div>Exception</div>;
-};
+  return <div>Exception</div>
+}
 
-export default Exception;
+export default Exception

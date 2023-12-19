@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Space, Table, Tag } from "antd";
-import type { ColumnsType } from "antd/es/table";
-import { getUsers } from "@/api/user";
+import { useEffect, useState } from 'react'
+import { Space, Table, Tag } from 'antd'
+import type { ColumnsType } from 'antd/es/table'
+import { getUsers } from '@/api/user'
 
 interface UserDataType {
   key: string;
@@ -14,51 +14,51 @@ interface UserDataType {
 
 const columns: ColumnsType<UserDataType> = [
   {
-    title: "Username",
-    dataIndex: "username",
-    key: "username",
+    title: 'Username',
+    dataIndex: 'username',
+    key: 'username',
   },
   {
-    title: "Password",
-    dataIndex: "password",
-    key: "password",
+    title: 'Password',
+    dataIndex: 'password',
+    key: 'password',
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
-    key: "gender",
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
   },
   {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
+    title: 'Tags',
+    key: 'tags',
+    dataIndex: 'tags',
     render: (_, { tags }) => (
       <>
         {tags.map((tag) => {
-          let color = tag === "master" ? "green" : "geekblue";
-          if (tag === "matainer") color = "orange";
+          let color = tag === 'master' ? 'green' : 'geekblue'
+          if (tag === 'matainer') color = 'orange'
           return (
             <Tag color={color} key={tag}>
               {tag.toUpperCase()}
             </Tag>
-          );
+          )
         })}
       </>
     ),
   },
   {
-    title: "Action",
-    key: "action",
+    title: 'Action',
+    key: 'action',
     render: () => (
       <Space size="middle">
         <a>Edit</a>
@@ -66,20 +66,20 @@ const columns: ColumnsType<UserDataType> = [
       </Space>
     ),
   },
-];
+]
 
 const Users = () => {
-  const [users, setUsers] = useState<UserDataType[]>([]);
+  const [users, setUsers] = useState<UserDataType[]>([])
 
   const getUserList = async () => {
-    const res = await getUsers<UserDataType[]>();
-    if (res.code !== 0) return;
-    setUsers(res.data);
-  };
+    const res = await getUsers<UserDataType[]>()
+    if (res.code !== 0) return
+    setUsers(res.data)
+  }
 
   useEffect(() => {
-    getUserList();
-  }, []);
+    getUserList()
+  }, [])
 
   return (
     <Table
@@ -89,7 +89,7 @@ const Users = () => {
       scroll={{ y: 600 }}
       size="middle"
     />
-  );
-};
+  )
+}
 
-export default Users;
+export default Users
