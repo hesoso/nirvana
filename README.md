@@ -70,7 +70,6 @@ yarn lint:css
 Nirvara
 ├─ .github                # 用于指定 Release-Please Action 配置
 ├─ .husky                 # 用于配置Git钩子（如pre-commit）的目录
-├─ .vscode                # vscode推荐配置
 ├─ mock                   # 模拟接口响应及动态随机数据
 ├─ public
 ├─ src
@@ -84,12 +83,13 @@ Nirvara
 │  ├─ routes              # 路由管理
 │  ├─ store               # redux store
 │  ├─ typings             # ts 声明文件
+│  ├─ utils               # 工具集合
 │  ├─ views               # 所有页面
 │  ├─ App.tsx             # 入口页面
 │  ├─ main.tsx            # 入口文件
 │  └─ env.d.ts            # vite 声明文件
 ├─ .env.development       # 开发环境配置
-├─ .eslintrc.js           # eslint 校验代码配置
+├─ .eslintrc.cjs          # eslint 校验代码配置
 ├─ .gitignore             # git 忽略配置
 ├─ .stylelintignore       # stylelint 样式校验忽略配置
 ├─ .stylelintrc.json      # stylelint 样式校验配置
