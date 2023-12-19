@@ -1,0 +1,42 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  background-image: url('../../assets/bg2.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.login-box {
+  padding: 0 50px;
+  width: 250px;
+  border-radius: 20px;
+  color: white;
+  background-color: rgba(0 0 0 / 30%);
+  animation: shadow-vary linear 5s infinite;
+}
+
+@keyframes shadow-vary {
+  0% {
+    box-shadow: 0 0 30px #d14e24;
+  }
+
+  25% {
+    box-shadow: 0 0 30px black;
+  }
+
+  50% {
+    box-shadow: 0 0 30px blueviolet;
+  }
+
+  75% {
+    box-shadow: 0 0 30px black;
+  }
+
+  100% {
+    box-shadow: 0 0 30px #d14e24;
+  }
+}
