@@ -118,5 +118,5 @@ Nirvara
 
 如果你有任何问题或建议，可以直接提issues，或者通过邮箱联系我：
 
-- Github: https://github.com/hesoso/toy/issues
+- Github: https://github.com/hesoso/nirvana/issues
 - Email: 240502633@qq.com
