@@ -1,7 +1,7 @@
 import axios, {
   AxiosInstance,
   AxiosResponse,
-  InternalAxiosRequestConfig,
+  InternalAxiosRequestConfig
 } from 'axios'
 import nprogress from '@/config/nprogress'
 import useRetry from './helper/retry'
@@ -11,7 +11,7 @@ import checkStatus from './helper/checkStatus'
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: 10000,
-  withCredentials: true,
+  withCredentials: true
 })
 
 axiosInstance.interceptors.request.use(
@@ -20,7 +20,7 @@ axiosInstance.interceptors.request.use(
     canceler.add(config)
     return config
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 )
 
 axiosInstance.interceptors.response.use(
@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use(
       canceler.remove(error.config)
       error.response && checkStatus(error.response.status)
     })
-  },
+  }
 )
 
 interface ResponseBase {
@@ -62,7 +62,7 @@ const http = {
   },
   delete<T>(url: string, params: object = {}): ReponsePromise<T> {
     return axiosInstance.delete(url, { ...params })
-  },
+  }
 }
 
 export default http

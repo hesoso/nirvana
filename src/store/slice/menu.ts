@@ -9,18 +9,18 @@ export const menuSlice = createSlice({
   name: 'menu',
   initialState: {
     value: {
-      breadcrumbs: [],
-    },
+      breadcrumbs: []
+    }
   },
   reducers: {
     setMenu: (
       state: { value: MenuState },
-      action: PayloadAction<MenuState>,
+      action: PayloadAction<MenuState>
     ) => {
       state.value.breadcrumbs = action.payload.breadcrumbs
       console.log(state.value.breadcrumbs, action.payload)
-    },
-  },
+    }
+  }
 })
 
 export const { setMenu } = menuSlice.actions

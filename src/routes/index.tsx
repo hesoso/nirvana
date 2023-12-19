@@ -31,11 +31,11 @@ const lazyLood = (element: ReactNode) => {
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to="/home" />,
+    element: <Navigate to="/home" />
   },
   {
     path: '/login',
-    element: <Login />,
+    element: <Login />
   },
   {
     path: '/',
@@ -43,42 +43,42 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/home',
-        element: <Home />,
+        element: <Home />
       },
       {
         path: '/comp/pinyin',
-        element: lazyLood(<LazyPinyin />),
+        element: lazyLood(<LazyPinyin />)
       },
       {
         path: '/editor',
-        element: lazyLood(<LazyEditor />),
+        element: lazyLood(<LazyEditor />)
       },
       {
         path: '/exception',
-        element: lazyLood(<LazyException />),
+        element: lazyLood(<LazyException />)
       },
       {
         path: '/auth',
-        element: lazyLood(<LazyAuth />),
+        element: lazyLood(<LazyAuth />)
       },
       {
         path: '/setting/users',
-        element: lazyLood(<LazyUsers />),
+        element: lazyLood(<LazyUsers />)
       },
       {
         path: '/setting/roles',
-        element: lazyLood(<LazyRoles />),
+        element: lazyLood(<LazyRoles />)
       },
       {
         path: '/setting/menus',
-        element: lazyLood(<LazyMenus />),
-      },
-    ],
+        element: lazyLood(<LazyMenus />)
+      }
+    ]
   },
   {
     path: '*',
-    element: <Result status="404" title="404" subTitle="我的兜里一无所有" />,
-  },
+    element: <Result status="404" title="404" subTitle="我的兜里一无所有" />
+  }
 ]
 
 const WrapperRoutes = () => useRoutes(routes)

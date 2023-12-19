@@ -16,7 +16,7 @@ const RETRY_DELAY = 3 * 1000
 const useRetry = (
   axiosInstance: AxiosInstance,
   error: WarpAxiosError,
-  callback: () => void,
+  callback: () => void
 ) => {
   const config = error.config
   // todoo 这里不同的请求是否会触发重试次数累计

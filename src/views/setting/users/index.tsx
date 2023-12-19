@@ -16,27 +16,27 @@ const columns: ColumnsType<UserDataType> = [
   {
     title: 'Username',
     dataIndex: 'username',
-    key: 'username',
+    key: 'username'
   },
   {
     title: 'Password',
     dataIndex: 'password',
-    key: 'password',
+    key: 'password'
   },
   {
     title: 'Gender',
     dataIndex: 'gender',
-    key: 'gender',
+    key: 'gender'
   },
   {
     title: 'Age',
     dataIndex: 'age',
-    key: 'age',
+    key: 'age'
   },
   {
     title: 'Address',
     dataIndex: 'address',
-    key: 'address',
+    key: 'address'
   },
   {
     title: 'Tags',
@@ -54,7 +54,7 @@ const columns: ColumnsType<UserDataType> = [
           )
         })}
       </>
-    ),
+    )
   },
   {
     title: 'Action',
@@ -64,8 +64,8 @@ const columns: ColumnsType<UserDataType> = [
         <a>Edit</a>
         <a>Delete</a>
       </Space>
-    ),
-  },
+    )
+  }
 ]
 
 const Users = () => {

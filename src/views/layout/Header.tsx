@@ -5,8 +5,8 @@ import { useAppSelector } from '../../hooks'
 
 type Props = {
   theme: BaseTheme;
-  onThemeChange: (theme: BaseTheme) => void;
-};
+  onThemeChange: (theme: BaseTheme) => void
+}
 
 const Header: React.FC<Props> = ({ theme, onThemeChange }) => {
   const changeTheme = (checked) => {
@@ -16,7 +16,7 @@ const Header: React.FC<Props> = ({ theme, onThemeChange }) => {
   }
 
   const breadcrumbsItems = useAppSelector(
-    (state) => state.menu.value.breadcrumbs,
+    (state) => state.menu.value.breadcrumbs
   )
 
   return (

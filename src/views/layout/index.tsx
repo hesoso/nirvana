@@ -27,7 +27,7 @@ const Layouts = () => {
         // colorBgContainer: '#fafafc', // 组件容器背景色
         // colorBgElevated: '#32363e', // 悬浮容器背景色
         // fontSize: 14,
-        colorPrimary: 'green',
+        colorPrimary: 'green'
       }
     }
   }
@@ -35,18 +35,18 @@ const Layouts = () => {
   useEffect(() => {
     let compsConfig: ThemeConfig['components'] = {
       Layout: {
-        headerHeight: 50,
-      },
+        headerHeight: 50
+      }
     }
     if (baseTheme === 'light') {
       compsConfig = {
         Layout: { headerBg: '#fafafc', headerHeight: 50 },
-        Menu: { itemBg: '#fafafc' },
+        Menu: { itemBg: '#fafafc' }
       }
     }
     const config: ThemeConfig = {
       algorithm: getThemeAlgorithm(baseTheme),
-      components: { ...compsConfig },
+      components: { ...compsConfig }
     }
     setThemeConfig(config)
   }, [baseTheme])

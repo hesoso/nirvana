@@ -18,5 +18,7 @@ module.exports = {
     'quotes': ['error', 'single'],
     // 禁止使用分号结尾
     'semi': ['error', 'never'],
+    // 禁止逗号
+    "comma-dangle": ["error", "never"]
   },
 }

@@ -5,7 +5,7 @@ import {
   Select,
   Input,
   ConfigProvider,
-  notification,
+  notification
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { MehOutlined } from '@ant-design/icons'
@@ -38,7 +38,7 @@ export default function Login() {
       message,
       description: <Context.Consumer>{() => tips}</Context.Consumer>,
       placement: 'topRight',
-      icon: <MehOutlined style={{ color: '#d14e24' }} />,
+      icon: <MehOutlined style={{ color: '#d14e24' }} />
     })
   }
 
@@ -64,13 +64,13 @@ export default function Login() {
         <ConfigProvider
           theme={{
             token: {
-              colorPrimary: '#d14e24',
+              colorPrimary: '#d14e24'
             },
             components: {
               Checkbox: {
-                colorText: '#d14e24',
-              },
-            },
+                colorText: '#d14e24'
+              }
+            }
           }}
         >
           <Form

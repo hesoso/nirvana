@@ -15,22 +15,22 @@ const columns: ColumnsType<RoleDataType> = [
   {
     title: 'Name',
     dataIndex: 'name',
-    key: 'name',
+    key: 'name'
   },
   {
     title: 'Status',
     dataIndex: 'status',
-    key: 'status',
+    key: 'status'
   },
   {
     title: 'Auth',
     dataIndex: 'auth',
-    key: 'auth',
+    key: 'auth'
   },
   {
     title: 'Desc',
     dataIndex: 'desc',
-    key: 'desc',
+    key: 'desc'
   },
   {
     title: 'Action',
@@ -40,8 +40,8 @@ const columns: ColumnsType<RoleDataType> = [
         <a>Edit</a>
         <a>Delete</a>
       </Space>
-    ),
-  },
+    )
+  }
 ]
 
 const Roles = () => {

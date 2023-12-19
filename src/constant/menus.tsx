@@ -6,14 +6,14 @@ import {
   FormOutlined,
   BugOutlined,
   SmileOutlined,
-  TeamOutlined,
+  TeamOutlined
 } from '@ant-design/icons'
 
 const siderMenus = [
   {
     key: 'home',
     label: '首页',
-    icon: <HomeOutlined />,
+    icon: <HomeOutlined />
   },
   {
     key: 'comp',
@@ -22,30 +22,30 @@ const siderMenus = [
     children: [
       {
         key: 'comp/pinyin',
-        label: '拼音',
-      },
-    ],
+        label: '拼音'
+      }
+    ]
   },
   {
     key: 'editor',
     label: '编辑器',
-    icon: <FormOutlined />,
+    icon: <FormOutlined />
   },
   {
     key: 'exception',
     label: '异常页面',
-    icon: <BugOutlined />,
+    icon: <BugOutlined />
   },
   {
     key: 'tips',
     label: '结果页面',
     icon: <SmileOutlined />,
-    disabled: true,
+    disabled: true
   },
   {
     key: 'auth',
     label: '权限测试',
-    icon: <TeamOutlined />,
+    icon: <TeamOutlined />
   },
   {
     key: 'setting',
@@ -54,40 +54,40 @@ const siderMenus = [
     children: [
       {
         key: 'setting/users',
-        label: '用户管理',
+        label: '用户管理'
       },
       {
         key: 'setting/roles',
-        label: '角色管理',
+        label: '角色管理'
       },
       {
         key: 'setting/menus',
-        label: '菜单管理',
-      },
-    ],
-  },
+        label: '菜单管理'
+      }
+    ]
+  }
 ]
 
 const userMenus: MenuProps['items'] = [
   {
     label: '江南无所有',
-    key: '0',
+    key: '0'
   },
   {
     label: '聊赠一枝春',
-    key: '1',
+    key: '1'
   },
   {
     label: '自定义主题',
-    key: '2',
+    key: '2'
   },
   {
-    type: 'divider',
+    type: 'divider'
   },
   {
     label: '退出登录',
-    key: '3',
-  },
+    key: '3'
+  }
 ]
 
 export { siderMenus, userMenus }
