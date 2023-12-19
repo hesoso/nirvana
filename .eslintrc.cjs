@@ -14,5 +14,9 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    // 强制使用单引号
+    'quotes': ['error', 'single'],
+    // 禁止使用分号结尾
+    'semi': ['error', 'never'],
   },
 }

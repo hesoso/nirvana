@@ -92,7 +92,7 @@ Nirvara
 ├─ .eslintrc.js           # eslint 校验代码配置
 ├─ .gitignore             # git 忽略配置
 ├─ .stylelintignore       # stylelint 样式校验忽略配置
-├─ .stylelintrc.js      # stylelint 样式校验配置
+├─ .stylelintrc.json      # stylelint 样式校验配置
 ├─ CHANGELOG.md           # 项目更新日志
 ├─ commitlint.config.js   # git 提交规范配置
 ├─ index.html             # 入口 html
