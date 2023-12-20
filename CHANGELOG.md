@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/hesoso/nirvana/compare/v1.0.0...v1.1.0) (2023-12-20)
+
+
+### Features
+
+* 增加请求处理功能 ([b021eaf](https://github.com/hesoso/nirvana/commit/b021eaf0afa98508900a9ff514b3013d58310973))
+
 ## 1.0.0 (2023-12-19)
 
 
