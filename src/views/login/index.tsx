@@ -14,14 +14,9 @@ import { obj2options } from '@/utils'
 import userApi from '@/api/user'
 import './index.scss'
 
-type FieldType = {
-  upper?: string;
-  lower?: string;
-};
-
-interface LoginRes {
-  userId: string;
+interface LoginParams {
   username: string;
+  password: string;
 }
 
 const Context = React.createContext({ name: 'Default' })
@@ -42,10 +37,10 @@ export default function Login() {
     })
   }
 
-  const onFinish = async (values: FieldType) => {
-    const res = await userApi.login<LoginRes>(values)
+  const onFinish = async (loginParams: LoginParams) => {
+    const res = await userApi.login(loginParams)
 
-    if (res.code === 0) {
+    if (res.code === 'success') {
       navigate('/home', { state: { username: res.data.username } })
     } else {
       let errMessage = '摸鱼都不会？'
@@ -83,18 +78,18 @@ export default function Login() {
             onFinish={onFinish}
             autoComplete="off"
           >
-            <Form.Item<FieldType>
-              name="upper"
+            <Form.Item<LoginParams>
+              name="username"
               rules={[{ required: true, message: '别逼我求你选！' }]}
             >
               <Select
                 placeholder="别犹豫了，选一个吧"
-                options={obj2options(signals, 'upper', 'upper')}
+                options={obj2options(signals, 'username', 'username')}
               />
             </Form.Item>
 
-            <Form.Item<FieldType>
-              name="lower"
+            <Form.Item<LoginParams>
+              name="password"
               rules={[{ required: true, message: '这题不会就换个会的！' }]}
             >
               <Input placeholder="考验文学功底的时候到了" />

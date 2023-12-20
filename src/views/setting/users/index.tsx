@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Space, Table, Tag } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import { getUsers } from '@/api/user'
+import userApi from '@/api/user'
 
-interface UserDataType {
+interface UserType {
   key: string;
+  userId: string;
   username: string;
   age: number;
   address: string;
@@ -12,7 +13,7 @@ interface UserDataType {
   tags: string[];
 }
 
-const columns: ColumnsType<UserDataType> = [
+const columns: ColumnsType<UserType> = [
   {
     title: 'Username',
     dataIndex: 'username',
@@ -69,11 +70,11 @@ const columns: ColumnsType<UserDataType> = [
 ]
 
 const Users = () => {
-  const [users, setUsers] = useState<UserDataType[]>([])
+  const [users, setUsers] = useState<UserType[]>([])
 
   const getUserList = async () => {
-    const res = await getUsers<UserDataType[]>()
-    if (res.code !== 0) return
+    const res = await userApi.getUsers()
+    if (res.code === 'error') return
     setUsers(res.data)
   }
 

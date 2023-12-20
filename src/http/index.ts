@@ -7,6 +7,7 @@ import nprogress from '@/config/nprogress'
 import useRetry from './helper/retry'
 import canceler from './helper/canceler'
 import checkStatus from './helper/checkStatus'
+import requestHandler from './helper/requestHandler'
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -38,30 +39,18 @@ axiosInstance.interceptors.response.use(
   }
 )
 
-interface ResponseBase {
-  code: number;
-  msg: string;
-  total?: number;
-}
-
-interface ReponseResult<T> extends ResponseBase {
-  data: T;
-}
-
-type ReponsePromise<T> = Promise<ReponseResult<T>>;
-
 const http = {
-  get<T>(url: string, params: object = {}): ReponsePromise<T> {
-    return axiosInstance.get(url, { ...params })
+  get<T, V = {}>(url: string, params?: T) {
+    return requestHandler<T, V>(() => axiosInstance.get(url, { params }))()
   },
-  post<T>(url: string, params: object = {}): ReponsePromise<T> {
-    return axiosInstance.post(url, { ...params })
+  post<T, V = {}>(url: string, data: T) {
+    return requestHandler<T, V>(() => axiosInstance.post(url, data))()
   },
-  put<T>(url: string, params: object = {}): ReponsePromise<T> {
-    return axiosInstance.put(url, { ...params })
+  put<T, V = {}>(url: string, data: T) {
+    return requestHandler<T, V>(() => axiosInstance.put(url, data))()
   },
-  delete<T>(url: string, params: object = {}): ReponsePromise<T> {
-    return axiosInstance.delete(url, { ...params })
+  delete<T, V ={}>(url: string, params: T) {
+    return requestHandler<T, V>(() => axiosInstance.delete(url, { params }))()
   }
 }
 

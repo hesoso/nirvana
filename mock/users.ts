@@ -8,12 +8,12 @@ export default [
     url: "/api/login",
     method: "post",
     response: ({ body }) => {
-      const { upper, lower } = body;
+      const { username, password } = body;
       const validate = signals.some((signal) => {
-        if (typeof signal.lower === "string") {
-          return signal.upper === upper && signal.lower === lower;
+        if (typeof signal.password === "string") {
+          return signal.password === username && signal.password === password;
         } else {
-          return signal.upper === upper && signal.lower.includes(lower!);
+          return signal.username === username && signal.password.includes(password!);
         }
       });
       if (validate) {
@@ -22,7 +22,7 @@ export default [
           msg: "登录成功",
           data: {
             userId: Date.now(),
-            userName: upper.slice(-3),
+            userName: username.slice(-3),
           },
         };
       } else {

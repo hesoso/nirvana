@@ -1,18 +1,35 @@
 import http from '@/http'
 
+interface UserType {
+  key: string;
+  userId: string;
+  username: string;
+  age: number;
+  address: string;
+  phone: string;
+  tags: string[];
+}
+
+interface LoginParams {
+  username: string;
+  password: string;
+}
+
+
+
 // 用户登录
-export const login = <T>(params) => {
-  return http.post<T>('/login', params)
+export const login = (params: LoginParams) => {
+  return http.post<LoginParams, UserType>('/login', params)
 }
 
 // 用户登出
-export const loginOut = <T>(params) => {
-  return http.post<T>('/loginout', params)
+export const loginOut = (params) => {
+  return http.post('/loginout', params)
 }
 
 // 获取用户列表
-export const getUsers = <T>() => {
-  return http.get<T>('/getUsers')
+export const getUsers = () => {
+  return http.get<{}, UserType[]>('/getUsers')
 }
 
 export default { login, loginOut, getUsers }
