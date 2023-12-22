@@ -1,18 +1,18 @@
-import type { AxiosError, AxiosResponse } from "axios";
+import type { AxiosError, AxiosResponse } from 'axios'
 
-type BaseRequest<T, V> = (params?: T) => Promise<AxiosResponse<V>>;
+type BaseRequest<T, V> = (params?: T) => Promise<AxiosResponse<V>>
 
 type SuccessResponse<V> = {
-  status: "success";
-  data: V;
-};
+  status: 'success'
+  data: V
+}
 
 type ErrorResponse<E = AxiosError> = {
-  status: "error";
-  error: E;
-};
+  status: 'error'
+  error: E
+}
 
-type BaseResponse<V, E> = Promise<SuccessResponse<V> | ErrorResponse<E>>;
+type BaseResponse<V, E> = Promise<SuccessResponse<V> | ErrorResponse<E>>
 
 /**
  * @description 使用 try catch 统一处理请求并返回标准响应
@@ -22,11 +22,11 @@ const requestHandler =
   <T, V, E = AxiosError>(request: BaseRequest<T, V>) =>
   async (params?: T): BaseResponse<V, E> => {
     try {
-      const response = await request(params);
-      return { status: "success", data: response.data };
+      const response = await request(params)
+      return { status: 'success', data: response.data }
     } catch (e) {
-      return { status: "error", error: e as E };
+      return { status: 'error', error: e as E }
     }
-  };
+  }
 
-export default requestHandler;
+export default requestHandler

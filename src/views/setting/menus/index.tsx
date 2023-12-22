@@ -1,30 +1,30 @@
-import { useEffect, useState } from "react";
-import { Space, Table, Button } from "antd";
-import type { ColumnsType } from "antd/es/table";
-import sysApi from "@/api/system";
-import IconFont from "@/components/iconfont";
+import { useEffect, useState } from 'react'
+import { Space, Table, Button } from 'antd'
+import type { ColumnsType } from 'antd/es/table'
+import sysApi from '@/api/system'
+import IconFont from '@/components/iconfont'
 
 const columns: ColumnsType<IMenu> = [
   {
-    title: "名称",
-    dataIndex: "label",
-    key: "label",
+    title: '名称',
+    dataIndex: 'label',
+    key: 'label',
   },
   {
-    title: "路径",
-    dataIndex: "key",
-    key: "key",
+    title: '路径',
+    dataIndex: 'key',
+    key: 'key',
   },
   {
-    title: "图标",
-    key: "icon",
+    title: '图标',
+    key: 'icon',
     render: (_, { icon }) => (
       <>
         <IconFont
           type={icon}
           style={{
-            fontSize: "16px",
-            marginRight: "10px",
+            fontSize: '16px',
+            marginRight: '10px',
           }}
         ></IconFont>
         <span>{icon}</span>
@@ -32,8 +32,8 @@ const columns: ColumnsType<IMenu> = [
     ),
   },
   {
-    title: "操作",
-    key: "action",
+    title: '操作',
+    key: 'action',
     render: () => (
       <Space size="middle">
         <Button>Edit</Button>
@@ -41,19 +41,19 @@ const columns: ColumnsType<IMenu> = [
       </Space>
     ),
   },
-];
+]
 
 const Users = () => {
-  const [menus, setMenus] = useState<IMenu[]>([]);
+  const [menus, setMenus] = useState<IMenu[]>([])
 
   const getMenuList = async () => {
-    const res = await sysApi.getMenus();
-    if (res.status === "success") setMenus(res.data.list);
-  };
+    const res = await sysApi.getMenus()
+    if (res.status === 'success') setMenus(res.data.list)
+  }
 
   useEffect(() => {
-    getMenuList();
-  }, []);
+    getMenuList()
+  }, [])
 
   return (
     <>
@@ -65,7 +65,7 @@ const Users = () => {
         size="middle"
       />
     </>
-  );
-};
+  )
+}
 
-export default Users;
+export default Users

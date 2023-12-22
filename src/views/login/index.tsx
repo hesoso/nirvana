@@ -1,29 +1,29 @@
-import { Button, Form, Input, Checkbox, ConfigProvider } from "antd";
-import { useNavigate } from "react-router-dom";
-import userApi from "@/api/user";
-import "./index.scss";
+import { Button, Form, Input, Checkbox, ConfigProvider } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import userApi from '@/api/user'
+import './index.scss'
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onFinish = async ({ username, password }) => {
-    const res = await userApi.login({ username, password });
+    const res = await userApi.login({ username, password })
 
-    if (res.status === "success") navigate("/home");
-  };
+    if (res.status === 'success') navigate('/home')
+  }
 
   return (
     <div className="login-wrapper">
       <div className="login-box">
-        <h2 style={{ color: "#d14e24" }}>Nirvana</h2>
+        <h2 style={{ color: '#d14e24' }}>Nirvana</h2>
         <ConfigProvider
           theme={{
             token: {
-              colorPrimary: "#d14e24",
+              colorPrimary: '#d14e24',
             },
             components: {
               Checkbox: {
-                colorText: "#d14e24",
+                colorText: '#d14e24',
               },
             },
           }}
@@ -40,14 +40,14 @@ const Login = () => {
           >
             <Form.Item<LoginParams>
               name="username"
-              rules={[{ required: true, message: "Please enter a username" }]}
+              rules={[{ required: true, message: 'Please enter a username' }]}
             >
               <Input placeholder="Username" />
             </Form.Item>
 
             <Form.Item<LoginParams>
               name="password"
-              rules={[{ required: true, message: "Please enter a password" }]}
+              rules={[{ required: true, message: 'Please enter a password' }]}
             >
               <Input.Password placeholder="Password" />
             </Form.Item>
@@ -65,7 +65,7 @@ const Login = () => {
         </ConfigProvider>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

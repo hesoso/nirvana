@@ -1,94 +1,94 @@
-import { lazy, Suspense, ReactNode } from "react";
-import { Navigate, useRoutes } from "react-router-dom";
-import type { RouteObject } from "react-router-dom";
-import { Result } from "antd";
+import { lazy, Suspense, ReactNode } from 'react'
+import { Navigate, useRoutes } from 'react-router-dom'
+import type { RouteObject } from 'react-router-dom'
+import { Result } from 'antd'
 
-import Layout from "../views/layout";
-import Login from "@/views/login";
-import Home from "@/views/home";
+import Layout from '../views/layout'
+import Login from '@/views/login'
+import Home from '@/views/home'
 
-import Fallback from "@/components/Fallback";
+import Fallback from '@/components/Fallback'
 
 // 编辑器
-const LazyEditor = lazy(() => import("../views/editor"));
+const LazyEditor = lazy(() => import('../views/editor'))
 // 异常页面
-const LazyException = lazy(() => import("../views/exception"));
+const LazyException = lazy(() => import('../views/exception'))
 // 权限测试页面
-const LazyAuth = lazy(() => import("../views/auth"));
+const LazyAuth = lazy(() => import('../views/auth'))
 
 // 组件 - 拼音
-const LazyPinyin = lazy(() => import("../views/comp/pinyin"));
+const LazyPinyin = lazy(() => import('../views/comp/pinyin'))
 // 组件 - 图标
-const LazyIcons = lazy(() => import("../views/comp/icons"));
+const LazyIcons = lazy(() => import('../views/comp/icons'))
 
 // 设置 - 用户管理
-const LazyUsers = lazy(() => import("../views/setting/users"));
+const LazyUsers = lazy(() => import('../views/setting/users'))
 // 设置 - 角色管理
-const LazyRoles = lazy(() => import("../views/setting/roles"));
+const LazyRoles = lazy(() => import('../views/setting/roles'))
 // 设置 - 菜单管理
-const LazyMenus = lazy(() => import("../views/setting/menus"));
+const LazyMenus = lazy(() => import('../views/setting/menus'))
 
 const lazyLood = (element: ReactNode) => {
-  return <Suspense fallback={<Fallback />}>{element}</Suspense>;
-};
+  return <Suspense fallback={<Fallback />}>{element}</Suspense>
+}
 
 const routes: RouteObject[] = [
   {
-    path: "/",
+    path: '/',
     element: <Navigate to="/home" />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
-        path: "/home",
+        path: '/home',
         element: <Home />,
       },
       {
-        path: "/comp/pinyin",
+        path: '/comp/pinyin',
         element: lazyLood(<LazyPinyin />),
       },
       {
-        path: "/comp/icons",
+        path: '/comp/icons',
         element: lazyLood(<LazyIcons />),
       },
       {
-        path: "/editor",
+        path: '/editor',
         element: lazyLood(<LazyEditor />),
       },
       {
-        path: "/exception",
+        path: '/exception',
         element: lazyLood(<LazyException />),
       },
       {
-        path: "/auth",
+        path: '/auth',
         element: lazyLood(<LazyAuth />),
       },
       {
-        path: "/setting/users",
+        path: '/setting/users',
         element: lazyLood(<LazyUsers />),
       },
       {
-        path: "/setting/roles",
+        path: '/setting/roles',
         element: lazyLood(<LazyRoles />),
       },
       {
-        path: "/setting/menus",
+        path: '/setting/menus',
         element: lazyLood(<LazyMenus />),
       },
     ],
   },
   {
-    path: "*",
+    path: '*',
     element: <Result status="404" title="404" subTitle="我的兜里一无所有" />,
   },
-];
+]
 
-const WrapperRoutes = () => useRoutes(routes);
+const WrapperRoutes = () => useRoutes(routes)
 
-export default WrapperRoutes;
+export default WrapperRoutes

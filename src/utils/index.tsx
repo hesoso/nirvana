@@ -3,7 +3,7 @@
  * @param {string} text 文本
  */
 const copyText = (text) => {
-  return navigator.clipboard.writeText(text);
-};
+  return navigator.clipboard.writeText(text)
+}
 
-export { copyText };
+export { copyText }
