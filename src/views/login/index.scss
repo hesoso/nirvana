@@ -1,7 +1,9 @@
 .login-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  box-sizing: border-box;
+  padding-right: 200px;
   width: 100vw;
   height: 100vh;
   background-color: #000;
@@ -12,7 +14,7 @@
 
 .login-box {
   padding: 0 50px;
-  width: 250px;
+  width: 300px;
   border-radius: 20px;
   color: white;
   background-color: rgba(0 0 0 / 30%);

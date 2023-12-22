@@ -1,4 +1,5 @@
 import { roles } from "./data";
+import { menus } from "../src/constant/menus";
 
 export default [
   // 查询角色
@@ -6,7 +7,7 @@ export default [
     url: "/api/getRoles",
     method: "get",
     response: () => {
-      return { code: 0, data: roles };
+      return { code: 0, data: { list: roles } };
     },
   },
   // 查询菜单
@@ -14,7 +15,7 @@ export default [
     url: "/api/getMenus",
     method: "get",
     response: () => {
-      return { code: 0, data: [] };
+      return { code: 0, data: { list: menus } };
     },
   },
 ];

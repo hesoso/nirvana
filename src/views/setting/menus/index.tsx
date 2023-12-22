@@ -1,98 +1,71 @@
-import { useEffect, useState } from 'react'
-import { Space, Table, Tag, Button } from 'antd'
-import type { ColumnsType } from 'antd/es/table'
-import { getMenus } from '@/api/system'
+import { useEffect, useState } from "react";
+import { Space, Table, Button } from "antd";
+import type { ColumnsType } from "antd/es/table";
+import sysApi from "@/api/system";
+import IconFont from "@/components/iconfont";
 
-interface UserDataType {
-  key: string;
-  username: string;
-  age: number;
-  address: string;
-  phone: string;
-  tags: string[];
-}
-
-const columns: ColumnsType<UserDataType> = [
+const columns: ColumnsType<IMenu> = [
   {
-    title: 'Username',
-    dataIndex: 'username',
-    key: 'username'
+    title: "名称",
+    dataIndex: "label",
+    key: "label",
   },
   {
-    title: 'Password',
-    dataIndex: 'password',
-    key: 'password'
+    title: "路径",
+    dataIndex: "key",
+    key: "key",
   },
   {
-    title: 'Gender',
-    dataIndex: 'gender',
-    key: 'gender'
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age'
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address'
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
+    title: "图标",
+    key: "icon",
+    render: (_, { icon }) => (
       <>
-        {tags.map((tag) => {
-          let color = tag === 'master' ? 'green' : 'geekblue'
-          if (tag === 'matainer') color = 'orange'
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          )
-        })}
+        <IconFont
+          type={icon}
+          style={{
+            fontSize: "16px",
+            marginRight: "10px",
+          }}
+        ></IconFont>
+        <span>{icon}</span>
       </>
-    )
+    ),
   },
   {
-    title: 'Action',
-    key: 'action',
+    title: "操作",
+    key: "action",
     render: () => (
       <Space size="middle">
-        <a>Edit</a>
-        <a>Delete</a>
+        <Button>Edit</Button>
+        <Button danger>Delete</Button>
       </Space>
-    )
-  }
-]
+    ),
+  },
+];
 
 const Users = () => {
-  const [menus, setMenus] = useState<UserDataType[]>([])
+  const [menus, setMenus] = useState<IMenu[]>([]);
 
   const getMenuList = async () => {
-    const res = await getMenus<UserDataType[]>()
-    if (res.code !== 0) return
-    setMenus(res.data)
-  }
+    const res = await sysApi.getMenus();
+    if (res.status === "success") setMenus(res.data.list);
+  };
 
   useEffect(() => {
-    getMenuList()
-  }, [])
+    getMenuList();
+  }, []);
 
   return (
     <>
-      <Button onClick={getMenuList}>调用接口</Button>
       <Table
         columns={columns}
         dataSource={menus}
-        pagination={{ pageSize: 20 }}
-        scroll={{ y: 600 }}
+        pagination={false}
+        scroll={{ y: 660 }}
         size="middle"
       />
     </>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;

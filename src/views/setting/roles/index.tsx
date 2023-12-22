@@ -1,70 +1,71 @@
-import { useEffect, useState } from 'react'
-import { Space, Table } from 'antd'
-import type { ColumnsType } from 'antd/es/table'
-import { getRoles } from '@/api/system'
+import { useEffect, useState } from "react";
+import { Space, Table, Button } from "antd";
+import type { ColumnsType } from "antd/es/table";
+import sysApi from "@/api/system";
 
-interface RoleDataType {
-  key: string;
-  name: string;
-  status: string;
-  auth: string[];
-  desc: string;
-}
-
-const columns: ColumnsType<RoleDataType> = [
+const columns: ColumnsType<IRole> = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name'
+    title: "角色",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: 'Status',
-    dataIndex: 'status',
-    key: 'status'
+    title: "角色Code",
+    dataIndex: "code",
+    key: "code",
   },
   {
-    title: 'Auth',
-    dataIndex: 'auth',
-    key: 'auth'
+    title: "状态",
+    dataIndex: "disabled",
+    key: "disabled",
+    render: (_, { disabled }) => (
+      <span>{disabled === 1 ? "正常" : "禁用"} </span>
+    ),
   },
   {
-    title: 'Desc',
-    dataIndex: 'desc',
-    key: 'desc'
+    title: "权限",
+    dataIndex: "presmission",
+    key: "presmission",
   },
   {
-    title: 'Action',
-    key: 'action',
+    title: "描述",
+    dataIndex: "desc",
+    key: "desc",
+  },
+  {
+    title: "操作",
+    key: "action",
+    width: 300,
     render: () => (
       <Space size="middle">
-        <a>Edit</a>
-        <a>Delete</a>
+        <Button>Edit</Button>
+        <Button danger>Delete</Button>
       </Space>
-    )
-  }
-]
+    ),
+  },
+];
 
 const Roles = () => {
-  const [roles, setRoles] = useState<RoleDataType[]>([])
+  const [roles, setRoles] = useState<IRole[]>([]);
 
   const getRoleList = async () => {
-    const res = await getRoles<RoleDataType[]>()
-    if (res.code !== 0) return
-    setRoles(res.data)
-  }
+    const res = await sysApi.getRoles();
+    if (res.status === "success") setRoles(res.data.list);
+  };
 
   useEffect(() => {
-    getRoleList()
-  }, [])
+    getRoleList();
+  }, []);
 
   return (
     <Table
+      rowKey="code"
       columns={columns}
       dataSource={roles}
       pagination={false}
       size="middle"
     />
-  )
-}
+  );
+};
 
-export default Roles
+export default Roles;

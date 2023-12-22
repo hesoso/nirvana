@@ -4,7 +4,6 @@ import { ConfigProvider, Layout, theme } from "antd";
 import type { MappingAlgorithm, ThemeConfig } from "antd";
 
 import Header from "./Header";
-import Footer from "./Footer";
 import Sider from "./Sider";
 import "./index.scss";
 
@@ -57,12 +56,9 @@ const Layouts = () => {
         <Sider theme={baseTheme} />
         <Layout>
           <Header theme={baseTheme} onThemeChange={setBaseTheme} />
-          <Layout className="content-wrapper">
-            <Layout.Content>
-              <Outlet />
-            </Layout.Content>
-            <Footer />
-          </Layout>
+          <Layout.Content className="content-wrapper">
+            <Outlet />
+          </Layout.Content>
         </Layout>
       </Layout>
     </ConfigProvider>

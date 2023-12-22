@@ -1,13 +1,9 @@
 /**
- * 数组转为select组件所需要的options
+ * @description 复制文本到剪切板
+ * @param {string} text 文本
  */
-function obj2options(arr, labelField, valueField) {
-  return arr.map((item) => {
-    return {
-      label: item[labelField],
-      value: item[valueField]
-    }
-  })
-}
+const copyText = (text) => {
+  return navigator.clipboard.writeText(text);
+};
 
-export { obj2options }
+export { copyText };

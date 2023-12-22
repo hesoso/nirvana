@@ -1,96 +1,119 @@
-import { useEffect, useState } from 'react'
-import { Space, Table, Tag } from 'antd'
-import type { ColumnsType } from 'antd/es/table'
-import userApi from '@/api/user'
+import { useEffect, useState, useCallback } from "react";
+import { Table, Tag, Button } from "antd";
+import type { ColumnsType } from "antd/es/table";
+import userApi from "@/api/user";
 
-interface UserType {
-  key: string;
-  userId: string;
-  username: string;
-  age: number;
-  address: string;
-  phone: string;
-  tags: string[];
-}
-
-const columns: ColumnsType<UserType> = [
+const columns: ColumnsType<IUser> = [
   {
-    title: 'Username',
-    dataIndex: 'username',
-    key: 'username'
+    title: "用户ID",
+    dataIndex: "userId",
+    key: "userId",
   },
   {
-    title: 'Password',
-    dataIndex: 'password',
-    key: 'password'
+    title: "用户名",
+    dataIndex: "username",
+    key: "username",
   },
   {
-    title: 'Gender',
-    dataIndex: 'gender',
-    key: 'gender'
+    title: "密码",
+    dataIndex: "password",
+    key: "password",
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age'
+    title: "性别",
+    dataIndex: "gender",
+    key: "gender",
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address'
+    title: "年龄",
+    dataIndex: "age",
+    key: "age",
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
+    title: "地址",
+    dataIndex: "address",
+    key: "address",
+  },
+  {
+    title: "状态",
+    dataIndex: "disabled",
+    key: "disabled",
+    render: (_, { disabled }) => (
+      <span>{disabled === 1 ? "启用" : "禁用"}</span>
+    ),
+  },
+  {
+    title: "角色",
+    key: "roles",
+    dataIndex: "roles",
+    render: (_, { roles }) => (
       <>
-        {tags.map((tag) => {
-          let color = tag === 'master' ? 'green' : 'geekblue'
-          if (tag === 'matainer') color = 'orange'
+        {roles.map(({ code, name }) => {
+          const color =
+            name === "master"
+              ? "orangered"
+              : name === "guest"
+                ? "green"
+                : "geekblue";
           return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
+            <Tag color={color} key={code}>
+              {name.toUpperCase()}
             </Tag>
-          )
+          );
         })}
       </>
-    )
+    ),
   },
   {
-    title: 'Action',
-    key: 'action',
-    render: () => (
-      <Space size="middle">
-        <a>Edit</a>
-        <a>Delete</a>
-      </Space>
-    )
-  }
-]
+    title: "操作",
+    key: "action",
+    render: (_, { disabled }) => (
+      <Button disabled={disabled === 0}>Edit</Button>
+    ),
+  },
+];
 
 const Users = () => {
-  const [users, setUsers] = useState<UserType[]>([])
+  const [users, setUsers] = useState<IUser[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [pagination, setPagination] = useState({
+    current: 1,
+    pageSize: 30,
+    total: 0,
+  });
+  const { current, pageSize } = pagination;
 
-  const getUserList = async () => {
-    const res = await userApi.getUsers()
-    if (res.code === 'error') return
-    setUsers(res.data)
-  }
+  const getUserList = useCallback(async () => {
+    setLoading(true);
+    const res = await userApi.getUsers({ current, pageSize });
+    setLoading(false);
+    if (res.status === "error") return;
+    setUsers([...res.data.list]);
+    setPagination((prev) => ({ ...prev, total: res.data.total }));
+  }, [current, pageSize]);
 
   useEffect(() => {
-    getUserList()
-  }, [])
+    getUserList();
+  }, [getUserList]);
 
   return (
     <Table
+      rowKey="userId"
       columns={columns}
       dataSource={users}
-      pagination={{ pageSize: 20 }}
-      scroll={{ y: 600 }}
+      pagination={pagination}
+      onChange={({ current, pageSize }) => {
+        setPagination({
+          ...pagination,
+          current: current || pagination.current,
+          pageSize: pageSize || pagination.pageSize,
+        });
+      }}
+      loading={loading}
+      scroll={{ y: 650 }}
       size="middle"
     />
-  )
-}
+  );
+};
 
-export default Users
+export default Users;
