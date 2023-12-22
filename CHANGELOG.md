@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/hesoso/nirvana/compare/v1.1.0...v1.2.0) (2023-12-22)
+
+
+### Features
+
+* 登录，退出，菜单，角色，图标等功能模块开发 + 声明文件优化 + 接口请求优化 ([f25e17c](https://github.com/hesoso/nirvana/commit/f25e17caa47e9dd6e0d87736c729dd6f2341234b))
+
 ## [1.1.0](https://github.com/hesoso/nirvana/compare/v1.0.0...v1.1.0) (2023-12-20)
 
 
